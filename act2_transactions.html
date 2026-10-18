@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Origin Predictor</title>
+</head>
+<body>
+    <h2>Predict Transaction Origin Category</h2>
+
+    <p>
+        Enter the transaction information to predict
+        its origin category using our machine-learning model.
+    </p>
+
+    <form action="/transaction/predict" method="post">
+
+        <label>Transaction Amount:</label>
+        <input type="number" name="transaction_amount"
+               min="0" step="0.01" required>
+        <br><br>
+
+        <label>Sender Type:</label>
+        <select name="sender_type" required>
+            <option value="individual">Individual</option>
+            <option value="company">Company</option>
+            <option value="marketplace">Marketplace</option>
+            <option value="crypto_exchange">Crypto Exchange</option>
+        </select>
+        <br><br>
+
+        <label>Recurrence:</label>
+        <input type="number" name="recurrence"
+               min="0" step="1" required>
+        <br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <h3>Prediction Result</h3>
+        <p>Origin Category: {{ result.prediction }}</p>
+        <p>
+            Prediction Probability:
+            {{ "%.2f"|format(result.probability * 100) }}%
+        </p>
+    {% endif %}
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <p>
+        <small>
+            Educational demonstration using synthetic
+            financial transaction data.
+        </small>
+    </p>
+</body>
+</html>
