@@ -1,0 +1,6 @@
+#required to open the model:
+flask
+pandas
+scikit-learn
+joblib
+openpyxl
