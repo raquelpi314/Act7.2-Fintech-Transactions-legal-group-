@@ -3,4 +3,3 @@ flask
 pandas
 scikit-learn
 joblib
-openpyxl
